@@ -295,10 +295,7 @@ function OverviewMermaidDiagram({
     <div className="grid h-full min-h-0 content-center gap-4 rounded-lg border border-current/10 bg-transparent p-4 shadow-none">
       <div className="grid items-center gap-3 xl:grid-cols-[1fr_34px_1fr_34px_1fr]">
         <button type="button" onClick={() => onSelect('overview')} className={`${nodeClass} min-h-24`}>
-          <p className="text-base font-black">Trade360Lab</p>
-          <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#2d3527]/68 dark:text-white/68">
-            Quantitative Trading Lab
-          </p>
+          <p className="text-base font-black">Quantative Trading Lab</p>
         </button>
         <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[#8faa22] dark:text-[#c8f24a] xl:rotate-0" />
         <div className="grid gap-3">
@@ -308,8 +305,7 @@ function OverviewMermaidDiagram({
             rel="noreferrer"
             className={`${nodeClass} min-h-20`}
           >
-            <p className="font-bold">Trade360Lab-landing</p>
-            <p className="mt-1 text-xs leading-5 text-[#2d3527]/68 dark:text-white/68">Website</p>
+            <p className="font-bold">Landing website</p>
           </a>
           <a
             href="https://github.com/Trade360Lab"
@@ -317,8 +313,7 @@ function OverviewMermaidDiagram({
             rel="noreferrer"
             className={`${nodeClass} min-h-20`}
           >
-            <p className="font-bold">GitHub</p>
-            <p className="mt-1 text-xs leading-5 text-[#2d3527]/68 dark:text-white/68">Organization</p>
+            <p className="font-bold">GitHub Organization</p>
           </a>
         </div>
         <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[#8faa22] dark:text-[#c8f24a] xl:rotate-0" />
@@ -330,7 +325,6 @@ function OverviewMermaidDiagram({
             className={`${nodeClass} min-h-20`}
           >
             <p className="font-bold">Main Repo</p>
-            <p className="mt-1 text-xs leading-5 text-[#2d3527]/68 dark:text-white/68">Trade360Lab</p>
           </a>
           <a
             href="https://github.com/Trade360Lab/Trade360Lab-Strategies.git"
@@ -339,7 +333,6 @@ function OverviewMermaidDiagram({
             className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#182016] hover:shadow-[0_0_28px_rgba(0,194,255,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(0,194,255,0.34)]`}
           >
             <p className="font-bold">Strategies Repo</p>
-            <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">Trade360Lab-Strategies</p>
           </a>
         </div>
       </div>
@@ -351,7 +344,6 @@ function OverviewMermaidDiagram({
           className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_28px_rgba(255,255,0,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(255,255,0,0.34)]`}
         >
           <p className="font-bold">BTC Analyzer Bot</p>
-          <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">GitHub repository</p>
         </a>
         <a
           href="https://github.com/Trade360Lab/Trade360Lab-SpreadBot.git"
@@ -360,7 +352,6 @@ function OverviewMermaidDiagram({
           className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_28px_rgba(255,255,0,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(255,255,0,0.34)]`}
         >
           <p className="font-bold">Spread Bot</p>
-          <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">Trade360Lab-SpreadBot</p>
         </a>
         <a
           href="https://github.com/Trade360Lab/Trade360Lab-PullbackTrader.git"
@@ -368,19 +359,18 @@ function OverviewMermaidDiagram({
           rel="noreferrer"
           className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#182016] hover:shadow-[0_0_28px_rgba(0,194,255,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(0,194,255,0.34)]`}
         >
-          <p className="font-bold">Pullback Trader</p>
-          <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">Trade360Lab-PullbackTrader</p>
+          <p className="font-bold">PullBack Trader</p>
         </a>
       </div>
       <pre className="sr-only">{`flowchart LR
-    A["Trade360Lab<br/>Quantitative Trading Lab"]
-    A --> B["Trade360Lab-landing<br/>Website"]
-    A --> C["GitHub<br/>Organization"]
-    C --> D["Main Repo<br/>Trade360Lab"]
-    C --> E["Strategies Repo<br/>Trade360Lab-Strategies"]
+    A["Quantative Trading Lab"]
+    A --> B["Landing website"]
+    A --> C["GitHub Organization"]
+    C --> D["Main Repo"]
+    C --> E["Strategies Repo"]
     C --> G["BTC Analyzer Bot"]
     C --> H["Spread Bot"]
-    C --> I["Pullback Trader"]`}</pre>
+    C --> I["PullBack Trader"]`}</pre>
     </div>
   )
 }
