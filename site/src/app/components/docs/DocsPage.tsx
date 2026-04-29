@@ -107,7 +107,7 @@ function CodePanel({
           {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
         </button>
       </div>
-      <pre className={`scrollbar-hidden overflow-auto px-4 text-xs text-[#dce8c2] ${dense ? 'max-h-24 py-1.5 leading-4' : `py-3 leading-6 ${compact ? 'max-h-44' : 'max-h-72'}`}`}>
+      <pre className={`scrollbar-hidden overflow-auto px-4 text-xs text-[#dce8c2] ${dense ? 'max-h-52 py-2.5 leading-5' : `py-3 leading-5 ${compact ? 'max-h-72' : 'max-h-80'}`}`}>
         <code>{code}</code>
       </pre>
     </div>
@@ -123,17 +123,20 @@ const methodStyles: Record<ApiMethod, string> = {
 
 const lifecycleStepOrder = [0, 1, 3, 2, 4, 5, 7, 6]
 
-const statusCardStyles = {
-  idle: 'border-[#c8f24a]/26 bg-[#c8f24a]/6 dark:bg-[#c8f24a]/7',
-  active: 'border-[#c8f24a]/34 bg-[#c8f24a]/10 dark:bg-[#c8f24a]/12',
-  success: 'border-[#c8f24a]/42 bg-[#c8f24a]/14 dark:bg-[#c8f24a]/16',
-  danger: 'border-[#c8f24a]/50 bg-[#c8f24a]/20 dark:bg-[#c8f24a]/22',
-} as const
+const lifecycleArrowClasses: Record<number, string> = {
+  0: 'right-[-1.65rem] top-1/2 -translate-y-1/2',
+  1: 'bottom-[-1.45rem] left-1/2 -translate-x-1/2 rotate-90',
+  2: 'bottom-[-1.45rem] left-1/2 -translate-x-1/2 rotate-90',
+  3: 'left-[-1.65rem] top-1/2 -translate-y-1/2 rotate-180',
+  4: 'right-[-1.65rem] top-1/2 -translate-y-1/2',
+  5: 'bottom-[-1.45rem] left-1/2 -translate-x-1/2 rotate-90',
+  7: 'left-[-1.65rem] top-1/2 -translate-y-1/2 rotate-180',
+}
 
 const statusBadgeStyles = {
-  idle: 'bg-[#c8f24a]/68',
-  active: 'bg-[#c8f24a]/78',
-  success: 'bg-[#c8f24a]/88',
+  idle: 'bg-[#c8f24a]/55',
+  active: 'bg-[#c8f24a]/70',
+  success: 'bg-[#c8f24a]/85',
   danger: 'bg-[#c8f24a]',
 } as const
 
@@ -397,38 +400,38 @@ function ArchitectureView({ isLightTheme, theme }: { isLightTheme: boolean; them
   const architectureFlowSteps = dataFlowSteps.filter((step) => step.title !== 'Python process')
 
   return (
-    <div className="grid h-full min-h-0 gap-3 xl:grid-cols-[1fr_0.9fr]">
-      <div className="grid gap-3 sm:grid-cols-2">
+    <div className="grid h-full min-h-0 gap-2 xl:grid-cols-[1fr_0.86fr]">
+      <div className="grid gap-2 sm:grid-cols-2">
         {architectureLayers.map((layer) => {
           const Icon = layer.icon
           return (
-            <div key={layer.title} className={`rounded-lg border p-4 ${theme.panel}`}>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center">
+            <div key={layer.title} className={`rounded-lg border p-3 ${theme.panel}`}>
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-8 w-8 items-center justify-center">
                   <img
                     src={`https://go-skill-icons.vercel.app/api/icons?i=${layer.skillIcon}&theme=${isLightTheme ? 'light' : 'dark'}`}
                     alt=""
-                    className="h-9 w-9 object-contain"
+                    className="h-7 w-7 object-contain"
                     loading="lazy"
                   />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-55">{layer.sourceName}</p>
-                  <h3 className="font-bold">{layer.title}</h3>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] opacity-55">{layer.sourceName}</p>
+                  <h3 className="text-base font-bold">{layer.title}</h3>
                 </div>
                 <Icon className="ml-auto h-4 w-4 opacity-35" />
               </div>
-              <p className={`mt-3 text-sm leading-6 ${theme.muted}`}>{layer.description}</p>
-              <div className="mt-3 grid gap-1.5">
+              <p className={`mt-2 text-sm leading-5 ${theme.muted}`}>{layer.description}</p>
+              <div className="mt-2 grid gap-1">
                 {layer.details.map((detail) => (
-                  <div key={detail} className={`rounded-md border px-2.5 py-1.5 text-xs leading-5 ${theme.pill}`}>
+                  <div key={detail} className={`rounded-md border px-2 py-1 text-xs leading-4 ${theme.pill}`}>
                     {detail}
                   </div>
                 ))}
               </div>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-2 flex flex-wrap gap-1.5">
                 {layer.responsibilities.map((item) => (
-                  <span key={item} className={`rounded-md border px-2 py-1 text-xs ${theme.pill}`}>
+                  <span key={item} className={`rounded-md border px-1.5 py-0.5 text-xs ${theme.pill}`}>
                     {item}
                   </span>
                 ))}
@@ -437,30 +440,30 @@ function ArchitectureView({ isLightTheme, theme }: { isLightTheme: boolean; them
           )
         })}
       </div>
-      <div className="grid min-h-0 gap-3">
-        <div className={`rounded-lg border p-3 ${theme.panel}`}>
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#8faa22] dark:text-[#c8f24a]">
+      <div className="grid min-h-0 gap-2">
+        <div className={`rounded-lg border p-2.5 ${theme.panel}`}>
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#8faa22] dark:text-[#c8f24a]">
             Поток данных
           </p>
-          <div className="mt-3 grid gap-2">
+          <div className="mt-2 grid gap-1.5">
             {architectureFlowSteps.map((step, index) => (
-              <div key={step.title} className={`grid grid-cols-[28px_1fr] gap-2 rounded-lg border p-2.5 ${theme.pill}`}>
-                <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#c8f24a] text-[11px] font-black text-black">
+              <div key={step.title} className={`grid grid-cols-[24px_1fr] gap-2 rounded-lg border p-2 ${theme.pill}`}>
+                <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#c8f24a] text-[10px] font-black text-black">
                   {index + 1}
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold">{step.title}</h4>
-                  <p className="mt-0.5 text-[11px] leading-4 opacity-75">{step.description}</p>
+                  <h4 className="text-[13px] font-bold leading-4">{step.title}</h4>
+                  <p className="text-xs leading-4 opacity-75">{step.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className={`rounded-lg border p-3 ${theme.panel}`}>
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#8faa22] dark:text-[#c8f24a]">
+        <div className={`rounded-lg border p-2.5 ${theme.panel}`}>
+          <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#8faa22] dark:text-[#c8f24a]">
             Структура репозитория
           </p>
-          <pre className="scrollbar-hidden mt-3 overflow-x-auto rounded-lg border border-[#c8f24a]/24 bg-black/70 p-3 text-[11px] leading-5 text-[#dce8c2] shadow-[0_16px_36px_rgba(0,0,0,0.18)]">
+          <pre className="scrollbar-hidden mt-2 overflow-hidden rounded-lg border border-[#c8f24a]/24 bg-black/70 p-2 text-xs leading-4 text-[#dce8c2] shadow-[0_16px_36px_rgba(0,0,0,0.18)]">
             <code>{repositoryTree}</code>
           </pre>
         </div>
@@ -491,9 +494,9 @@ function ApiView({ theme }: { theme: typeof lightTheme }) {
   }
 
   return (
-    <div className="grid h-full min-h-0 gap-3 xl:grid-cols-[0.82fr_1.18fr]">
-      <div className="grid min-h-0 gap-2">
-        <div className={`rounded-lg border p-2.5 ${theme.panel}`}>
+    <div className="grid h-full min-h-0 gap-3 xl:grid-cols-[0.52fr_1.48fr]">
+      <div className="grid min-h-0 content-start gap-2">
+        <div className={`self-start rounded-lg border p-2.5 ${theme.panel}`}>
           <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#8faa22] dark:text-[#c8f24a]">
             HTTP endpoints
           </p>
@@ -525,7 +528,7 @@ function ApiView({ theme }: { theme: typeof lightTheme }) {
           </div>
         </div>
 
-        <div className="scrollbar-hidden grid max-h-56 gap-2 overflow-y-auto pr-1">
+        <div className="scrollbar-hidden grid gap-2 overflow-y-auto pr-1">
           {methodEndpoints.map((endpoint) => {
             const isSelected = selectedEndpoint?.path === endpoint.path
 
@@ -534,7 +537,7 @@ function ApiView({ theme }: { theme: typeof lightTheme }) {
                 key={`${endpoint.method}-${endpoint.path}`}
                 type="button"
                 onClick={() => setSelectedEndpointPath(endpoint.path)}
-                className={`h-[72px] overflow-hidden rounded-lg border p-3 text-left transition-colors ${
+                className={`min-h-[78px] overflow-hidden rounded-lg border p-3 text-left transition-colors ${
                   isSelected ? 'border-[#c8f24a] bg-[#c8f24a]/10' : theme.panel
                 }`}
               >
@@ -554,27 +557,24 @@ function ApiView({ theme }: { theme: typeof lightTheme }) {
             </div>
           ) : null}
         </div>
-
-        {selectedEndpoint ? (
-          <div className={`rounded-lg border p-3 ${theme.panel}`}>
-            <div className="flex flex-wrap items-center gap-2">
-              <MethodBadge method={selectedEndpoint.method} />
-              <span className="font-mono text-sm font-bold">{selectedEndpoint.path}</span>
-            </div>
-            <p className={`mt-1 line-clamp-1 text-xs leading-5 ${theme.muted}`}>{selectedEndpoint.description}</p>
-          </div>
-        ) : null}
       </div>
-      <div className="grid min-h-0 gap-3">
+      <div className="grid min-h-0 content-start gap-3">
         {selectedEndpoint ? (
           <>
-            <div className={`rounded-lg border p-2 text-[11px] leading-4 ${theme.pill}`}>
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <p className="font-bold text-[#8faa22] dark:text-[#c8f24a]">Ошибки API</p>
-                <p>JSON: timestamp, status, error, message и path.</p>
+            <div className={`rounded-lg border p-5 ${theme.panel}`}>
+              <div className="flex flex-wrap items-center gap-3">
+                <MethodBadge method={selectedEndpoint.method} />
+                <span className="font-mono text-2xl font-black tracking-tight">{selectedEndpoint.path}</span>
+              </div>
+              <p className={`mt-3 text-base leading-7 ${theme.muted}`}>{selectedEndpoint.description}</p>
+              <div className={`mt-4 rounded-lg border p-3 text-xs leading-5 ${theme.pill}`}>
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <p className="font-bold text-[#8faa22] dark:text-[#c8f24a]">Ошибки API</p>
+                  <p>JSON: timestamp, status, error, message и path.</p>
+                </div>
               </div>
             </div>
-            <div className="grid items-start gap-3 lg:grid-cols-2">
+            <div className="grid min-h-0 content-start gap-3">
               {selectedEndpoint.request ? (
                 <CodePanel
                   title={`${selectedEndpoint.method} ${selectedEndpoint.path} запрос`}
@@ -598,7 +598,10 @@ function ApiView({ theme }: { theme: typeof lightTheme }) {
 }
 
 function LifecycleView({ theme }: { theme: typeof lightTheme }) {
-  const lifecycleSteps = lifecycleStepOrder.map((stepIndex) => dataFlowSteps[stepIndex])
+  const lifecycleSteps = lifecycleStepOrder.map((stepIndex) => ({
+    step: dataFlowSteps[stepIndex],
+    originalIndex: stepIndex,
+  }))
 
   return (
     <div className="grid h-full min-h-0 gap-3 xl:grid-cols-[0.8fr_1.2fr]">
@@ -606,10 +609,10 @@ function LifecycleView({ theme }: { theme: typeof lightTheme }) {
         {backtestStatuses.map((item) => {
           const Icon = statusIcons[item.tone]
           return (
-            <div key={item.status} className={`relative overflow-hidden rounded-lg border p-4 ${statusCardStyles[item.tone]}`}>
+            <div key={item.status} className={`relative overflow-hidden rounded-lg border p-4 ${theme.panel}`}>
               <Icon className="pointer-events-none absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-[#8faa22]/10 dark:text-[#c8f24a]/12" />
-              <div className="relative flex items-center justify-center">
-                <span className={`rounded-md px-3 py-1.5 text-xs font-black text-black shadow-[0_0_18px_rgba(200,242,74,0.2)] ${statusBadgeStyles[item.tone]}`}>
+              <div className="relative flex items-center gap-3">
+                <span className={`rounded-md px-2.5 py-1 text-xs font-black text-black ${statusBadgeStyles[item.tone]}`}>
                   {item.status}
                 </span>
               </div>
@@ -618,18 +621,23 @@ function LifecycleView({ theme }: { theme: typeof lightTheme }) {
           )
         })}
       </div>
-      <div className="grid gap-2">
-        {lifecycleSteps.map((step, index) => (
-          <div key={step.title}>
-            <div className={`rounded-lg border p-3 ${theme.panel}`}>
+      <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
+        {lifecycleSteps.map(({ step, originalIndex }, displayIndex) => (
+          <div key={step.title} className="relative">
+            <div className={`h-full rounded-lg border p-3 ${theme.panel}`}>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8faa22] dark:text-[#c8f24a]">
-                0{index + 1}
+                0{originalIndex + 1}
               </p>
               <h3 className="mt-1 font-bold">{step.title}</h3>
               <p className={`mt-1 text-sm leading-5 ${theme.muted}`}>{step.description}</p>
             </div>
-            {index < lifecycleSteps.length - 1 ? (
-              <ArrowRight className="mx-auto my-1 h-4 w-4 rotate-90 text-[#8faa22] dark:text-[#c8f24a]" />
+            {lifecycleArrowClasses[displayIndex] ? (
+              <ArrowRight
+                className={`absolute hidden h-5 w-5 text-[#8faa22] dark:text-[#c8f24a] sm:block ${lifecycleArrowClasses[displayIndex]}`}
+              />
+            ) : null}
+            {displayIndex < lifecycleSteps.length - 1 ? (
+              <ArrowRight className="mx-auto my-1 h-4 w-4 rotate-90 text-[#8faa22] dark:text-[#c8f24a] sm:hidden" />
             ) : null}
           </div>
         ))}
