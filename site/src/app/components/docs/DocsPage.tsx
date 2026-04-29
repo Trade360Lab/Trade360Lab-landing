@@ -281,16 +281,16 @@ function OverviewMermaidDiagram({
   theme: typeof lightTheme
 }) {
   const nodeClass =
-    'rounded-lg border border-[#c8f24a]/32 bg-black/50 px-4 py-3 text-center text-white shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-colors duration-150 hover:border-[#c8f24a]/70 hover:bg-black/58'
+    'rounded-lg border border-[#c8f24a]/32 bg-white px-4 py-3 text-center text-[#182016] shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-colors duration-150 hover:border-[#c8f24a]/70 hover:bg-white/92 dark:bg-black dark:text-white dark:hover:bg-black/88'
   const accentBaseClass =
-    'rounded-lg border bg-black/50 px-4 py-3 text-center shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-transform duration-150 hover:-translate-y-0.5'
+    'rounded-lg border bg-white px-4 py-3 text-center shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-transform duration-150 hover:-translate-y-0.5 dark:bg-black'
 
   return (
-    <div className="grid h-full min-h-0 content-center gap-4 rounded-lg border border-current/10 bg-white/18 p-4 shadow-[0_20px_46px_rgba(31,39,29,0.04)] dark:bg-black/8">
+    <div className="grid h-full min-h-0 content-center gap-4 rounded-lg border border-current/10 bg-transparent p-4 shadow-none">
       <div className="grid items-center gap-3 xl:grid-cols-[1fr_34px_1fr_34px_1fr]">
         <button type="button" onClick={() => onSelect('overview')} className={`${nodeClass} min-h-24`}>
           <p className="text-base font-black">Trade360Lab</p>
-          <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/68">
+          <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#2d3527]/68 dark:text-white/68">
             Quantitative Trading Lab
           </p>
         </button>
@@ -298,11 +298,11 @@ function OverviewMermaidDiagram({
         <div className="grid gap-3">
           <button type="button" onClick={() => onSelect('overview')} className={`${nodeClass} min-h-20`}>
             <p className="font-bold">Landing</p>
-            <p className="mt-1 text-xs leading-5 text-white/68">Website</p>
+            <p className="mt-1 text-xs leading-5 text-[#2d3527]/68 dark:text-white/68">Website</p>
           </button>
           <div className={`${nodeClass} min-h-20`}>
             <p className="font-bold">GitHub</p>
-            <p className="mt-1 text-xs leading-5 text-white/68">Organization</p>
+            <p className="mt-1 text-xs leading-5 text-[#2d3527]/68 dark:text-white/68">Organization</p>
           </div>
         </div>
         <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[#8faa22] dark:text-[#c8f24a] xl:rotate-0" />
@@ -314,7 +314,7 @@ function OverviewMermaidDiagram({
             className={`${nodeClass} min-h-20`}
           >
             <p className="font-bold">Main Repo</p>
-            <p className="mt-1 text-xs leading-5 text-white/68">Trade360Lab</p>
+            <p className="mt-1 text-xs leading-5 text-[#2d3527]/68 dark:text-white/68">Trade360Lab</p>
           </a>
           <a
             href="https://github.com/Trade360Lab/Trade360Lab-Strategies.git"
