@@ -296,14 +296,24 @@ function OverviewMermaidDiagram({
         </button>
         <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[#8faa22] dark:text-[#c8f24a] xl:rotate-0" />
         <div className="grid gap-3">
-          <button type="button" onClick={() => onSelect('overview')} className={`${nodeClass} min-h-20`}>
-            <p className="font-bold">Landing</p>
+          <a
+            href="https://github.com/Trade360Lab/Trade360Lab-landing.git"
+            target="_blank"
+            rel="noreferrer"
+            className={`${nodeClass} min-h-20`}
+          >
+            <p className="font-bold">Trade360Lab-landing</p>
             <p className="mt-1 text-xs leading-5 text-[#2d3527]/68 dark:text-white/68">Website</p>
-          </button>
-          <div className={`${nodeClass} min-h-20`}>
+          </a>
+          <a
+            href="https://github.com/Trade360Lab"
+            target="_blank"
+            rel="noreferrer"
+            className={`${nodeClass} min-h-20`}
+          >
             <p className="font-bold">GitHub</p>
             <p className="mt-1 text-xs leading-5 text-[#2d3527]/68 dark:text-white/68">Organization</p>
-          </div>
+          </a>
         </div>
         <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[#8faa22] dark:text-[#c8f24a] xl:rotate-0" />
         <div className="grid gap-3">
@@ -320,10 +330,10 @@ function OverviewMermaidDiagram({
             href="https://github.com/Trade360Lab/Trade360Lab-Strategies.git"
             target="_blank"
             rel="noreferrer"
-            className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#00C2FF] hover:shadow-[0_0_24px_rgba(0,194,255,0.2)]`}
+            className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#182016] hover:shadow-[0_0_24px_rgba(0,194,255,0.2)] dark:text-[#c8f24a]`}
           >
             <p className="font-bold">Strategies Repo</p>
-            <p className="mt-1 text-xs leading-5 text-[#00C2FF]/70">Trade360Lab-Strategies</p>
+            <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">Trade360Lab-Strategies</p>
           </a>
         </div>
       </div>
@@ -335,16 +345,16 @@ function OverviewMermaidDiagram({
             href="https://github.com/Trade360Lab/Trade360Lab-Analyzer-BTC.git"
             target="_blank"
             rel="noreferrer"
-            className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#FFFF00] hover:shadow-[0_0_24px_rgba(255,255,0,0.2)]`}
+            className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_24px_rgba(255,255,0,0.2)] dark:text-[#c8f24a]`}
           >
             <p className="font-bold">BTC Analyzer Bot</p>
-            <p className="mt-1 text-xs leading-5 text-[#FFFF00]/70">GitHub repository</p>
+            <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">GitHub repository</p>
           </a>
         </div>
       </div>
       <pre className="sr-only">{`flowchart LR
     A["Trade360Lab<br/>Quantitative Trading Lab"]
-    A --> B["Landing<br/>Website"]
+    A --> B["Trade360Lab-landing<br/>Website"]
     A --> C["GitHub<br/>Organization"]
     C --> D["Main Repo<br/>Trade360Lab"]
     C --> E["Strategies Repo<br/>Trade360Lab-Strategies"]
