@@ -231,7 +231,13 @@ export function DocsPage({ isLightTheme }: DocsPageProps) {
             </div>
           </aside>
 
-          <div className={`min-h-0 overflow-hidden rounded-lg border p-4 backdrop-blur-xl ${theme.panelStrong}`}>
+          <div
+            className={`min-h-0 overflow-hidden rounded-lg border p-4 ${
+              activeSection === 'overview'
+                ? 'border-current/10 bg-transparent shadow-none'
+                : `backdrop-blur-xl ${theme.panelStrong}`
+            }`}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeSection}
@@ -281,9 +287,9 @@ function OverviewMermaidDiagram({
   theme: typeof lightTheme
 }) {
   const nodeClass =
-    'rounded-lg border border-[#c8f24a]/32 bg-white px-4 py-3 text-center text-[#182016] shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-colors duration-150 hover:border-[#c8f24a]/70 hover:bg-white/92 dark:bg-black dark:text-white dark:hover:bg-black/88'
+    'rounded-lg border border-[#c8f24a]/32 bg-white px-4 py-3 text-center text-[#182016] shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-all duration-150 hover:-translate-y-0.5 hover:border-[#c8f24a]/70 hover:bg-white/92 hover:shadow-[0_0_28px_rgba(143,170,34,0.34)] dark:bg-black dark:text-white dark:hover:bg-black/88 dark:hover:shadow-[0_0_28px_rgba(200,242,74,0.32)]'
   const accentBaseClass =
-    'rounded-lg border bg-white px-4 py-3 text-center shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-transform duration-150 hover:-translate-y-0.5 dark:bg-black'
+    'rounded-lg border bg-white px-4 py-3 text-center shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-all duration-150 hover:-translate-y-0.5 dark:bg-black'
 
   return (
     <div className="grid h-full min-h-0 content-center gap-4 rounded-lg border border-current/10 bg-transparent p-4 shadow-none">
@@ -330,7 +336,7 @@ function OverviewMermaidDiagram({
             href="https://github.com/Trade360Lab/Trade360Lab-Strategies.git"
             target="_blank"
             rel="noreferrer"
-            className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#182016] hover:shadow-[0_0_24px_rgba(0,194,255,0.2)] dark:text-[#c8f24a]`}
+            className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#182016] hover:shadow-[0_0_28px_rgba(0,194,255,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(0,194,255,0.34)]`}
           >
             <p className="font-bold">Strategies Repo</p>
             <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">Trade360Lab-Strategies</p>
@@ -345,7 +351,7 @@ function OverviewMermaidDiagram({
             href="https://github.com/Trade360Lab/Trade360Lab-Analyzer-BTC.git"
             target="_blank"
             rel="noreferrer"
-            className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_24px_rgba(255,255,0,0.2)] dark:text-[#c8f24a]`}
+            className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_28px_rgba(255,255,0,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(255,255,0,0.34)]`}
           >
             <p className="font-bold">BTC Analyzer Bot</p>
             <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">GitHub repository</p>
