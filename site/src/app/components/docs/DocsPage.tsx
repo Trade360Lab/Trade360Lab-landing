@@ -287,15 +287,15 @@ function OverviewMermaidDiagram({
   theme: typeof lightTheme
 }) {
   const nodeClass =
-    'rounded-lg border border-[#c8f24a]/32 bg-white px-4 py-3 text-center text-[#182016] shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-all duration-150 hover:-translate-y-0.5 hover:border-[#c8f24a]/70 hover:bg-white/92 hover:shadow-[0_0_28px_rgba(143,170,34,0.34)] dark:bg-black dark:text-white dark:hover:bg-black/88 dark:hover:shadow-[0_0_28px_rgba(200,242,74,0.32)]'
+    'flex items-center justify-center rounded-lg border border-[#c8f24a]/32 bg-white px-4 py-3 text-center text-[#182016] shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-all duration-150 hover:-translate-y-0.5 hover:border-[#c8f24a]/70 hover:bg-white/92 hover:shadow-[0_0_28px_rgba(143,170,34,0.34)] dark:bg-black dark:text-white dark:hover:bg-black/88 dark:hover:shadow-[0_0_28px_rgba(200,242,74,0.32)]'
   const accentBaseClass =
-    'rounded-lg border bg-white px-4 py-3 text-center shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-all duration-150 hover:-translate-y-0.5 dark:bg-black'
+    'flex items-center justify-center rounded-lg border bg-white px-4 py-3 text-center shadow-[0_14px_30px_rgba(0,0,0,0.16)] transition-all duration-150 hover:-translate-y-0.5 dark:bg-black'
 
   return (
     <div className="grid h-full min-h-0 content-center gap-4 rounded-lg border border-current/10 bg-transparent p-4 shadow-none">
       <div className="grid items-center gap-3 xl:grid-cols-[1fr_34px_1fr_34px_1fr]">
         <button type="button" onClick={() => onSelect('overview')} className={`${nodeClass} min-h-24`}>
-          <p className="text-base font-black">Quantative Trading Lab</p>
+          <p className="text-lg font-black">Quantative Trading Lab</p>
         </button>
         <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[#8faa22] dark:text-[#c8f24a] xl:rotate-0" />
         <div className="grid gap-3">
@@ -305,7 +305,7 @@ function OverviewMermaidDiagram({
             rel="noreferrer"
             className={`${nodeClass} min-h-20`}
           >
-            <p className="font-bold">Landing website</p>
+            <p className="text-lg font-bold">Landing website</p>
           </a>
           <a
             href="https://github.com/Trade360Lab"
@@ -313,7 +313,7 @@ function OverviewMermaidDiagram({
             rel="noreferrer"
             className={`${nodeClass} min-h-20`}
           >
-            <p className="font-bold">GitHub Organization</p>
+            <p className="text-lg font-bold">GitHub Organization</p>
           </a>
         </div>
         <ArrowRight className="mx-auto h-5 w-5 rotate-90 text-[#8faa22] dark:text-[#c8f24a] xl:rotate-0" />
@@ -324,7 +324,7 @@ function OverviewMermaidDiagram({
             rel="noreferrer"
             className={`${nodeClass} min-h-20`}
           >
-            <p className="font-bold">Main Repo</p>
+            <p className="text-lg font-bold">Main Repo</p>
           </a>
           <a
             href="https://github.com/Trade360Lab/Trade360Lab-Strategies.git"
@@ -332,7 +332,7 @@ function OverviewMermaidDiagram({
             rel="noreferrer"
             className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#182016] hover:shadow-[0_0_28px_rgba(0,194,255,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(0,194,255,0.34)]`}
           >
-            <p className="font-bold">Strategies Repo</p>
+            <p className="text-lg font-bold">Strategies Repo</p>
           </a>
         </div>
       </div>
@@ -343,7 +343,7 @@ function OverviewMermaidDiagram({
           rel="noreferrer"
           className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_28px_rgba(255,255,0,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(255,255,0,0.34)]`}
         >
-          <p className="font-bold">BTC Analyzer Bot</p>
+          <p className="text-lg font-bold">BTC Analyzer Bot</p>
         </a>
         <a
           href="https://github.com/Trade360Lab/Trade360Lab-SpreadBot.git"
@@ -351,7 +351,7 @@ function OverviewMermaidDiagram({
           rel="noreferrer"
           className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_28px_rgba(255,255,0,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(255,255,0,0.34)]`}
         >
-          <p className="font-bold">Spread Bot</p>
+          <p className="text-lg font-bold">Spread Bot</p>
         </a>
         <a
           href="https://github.com/Trade360Lab/Trade360Lab-PullbackTrader.git"
@@ -359,7 +359,7 @@ function OverviewMermaidDiagram({
           rel="noreferrer"
           className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#182016] hover:shadow-[0_0_28px_rgba(0,194,255,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(0,194,255,0.34)]`}
         >
-          <p className="font-bold">PullBack Trader</p>
+          <p className="text-lg font-bold">PullBack Trader</p>
         </a>
       </div>
       <pre className="sr-only">{`flowchart LR
