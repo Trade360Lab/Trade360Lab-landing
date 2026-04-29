@@ -121,6 +121,22 @@ const methodStyles: Record<ApiMethod, string> = {
   DELETE: 'bg-[#ff6b6b]/16 text-[#9f2525] dark:text-[#ffb4b4] border-[#ff6b6b]/35',
 }
 
+const lifecycleStepOrder = [0, 1, 3, 2, 4, 5, 7, 6]
+
+const statusCardStyles = {
+  idle: 'border-[#c8f24a]/26 bg-[#c8f24a]/6 dark:bg-[#c8f24a]/7',
+  active: 'border-[#c8f24a]/34 bg-[#c8f24a]/10 dark:bg-[#c8f24a]/12',
+  success: 'border-[#c8f24a]/42 bg-[#c8f24a]/14 dark:bg-[#c8f24a]/16',
+  danger: 'border-[#c8f24a]/50 bg-[#c8f24a]/20 dark:bg-[#c8f24a]/22',
+} as const
+
+const statusBadgeStyles = {
+  idle: 'bg-[#c8f24a]/68',
+  active: 'bg-[#c8f24a]/78',
+  success: 'bg-[#c8f24a]/88',
+  danger: 'bg-[#c8f24a]',
+} as const
+
 function MethodBadge({ method }: { method: ApiMethod }) {
   return (
     <span className={`rounded-md border px-2.5 py-1 text-xs font-black ${methodStyles[method]}`}>
@@ -245,7 +261,9 @@ export function DocsPage({ isLightTheme }: DocsPageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
                 transition={{ duration: 0.14, ease: 'easeOut' }}
-                className="scrollbar-hidden h-full min-h-0 overflow-y-auto pr-1"
+                className={`scrollbar-hidden h-full min-h-0 pr-1 ${
+                  activeSection === 'architecture' ? 'overflow-hidden' : 'overflow-y-auto'
+                }`}
               >
                 {activeSection === 'overview' ? (
                   <OverviewView onSelect={setActiveSection} theme={theme} />
@@ -376,6 +394,8 @@ function OverviewMermaidDiagram({
 }
 
 function ArchitectureView({ isLightTheme, theme }: { isLightTheme: boolean; theme: typeof lightTheme }) {
+  const architectureFlowSteps = dataFlowSteps.filter((step) => step.title !== 'Python process')
+
   return (
     <div className="grid h-full min-h-0 gap-3 xl:grid-cols-[1fr_0.9fr]">
       <div className="grid gap-3 sm:grid-cols-2">
@@ -422,8 +442,8 @@ function ArchitectureView({ isLightTheme, theme }: { isLightTheme: boolean; them
           <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#8faa22] dark:text-[#c8f24a]">
             Поток данных
           </p>
-          <div className="mt-3 grid max-h-[33rem] gap-2 overflow-y-auto pr-1">
-            {dataFlowSteps.map((step, index) => (
+          <div className="mt-3 grid gap-2">
+            {architectureFlowSteps.map((step, index) => (
               <div key={step.title} className={`grid grid-cols-[28px_1fr] gap-2 rounded-lg border p-2.5 ${theme.pill}`}>
                 <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#c8f24a] text-[11px] font-black text-black">
                   {index + 1}
@@ -578,30 +598,39 @@ function ApiView({ theme }: { theme: typeof lightTheme }) {
 }
 
 function LifecycleView({ theme }: { theme: typeof lightTheme }) {
+  const lifecycleSteps = lifecycleStepOrder.map((stepIndex) => dataFlowSteps[stepIndex])
+
   return (
     <div className="grid h-full min-h-0 gap-3 xl:grid-cols-[0.8fr_1.2fr]">
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
         {backtestStatuses.map((item) => {
           const Icon = statusIcons[item.tone]
           return (
-            <div key={item.status} className={`rounded-lg border p-4 ${theme.panel}`}>
-              <div className="flex items-center gap-3">
-                <Icon className="h-5 w-5 text-[#8faa22] dark:text-[#c8f24a]" />
-                <span className="rounded-md bg-[#c8f24a] px-2.5 py-1 text-xs font-black text-black">{item.status}</span>
+            <div key={item.status} className={`relative overflow-hidden rounded-lg border p-4 ${statusCardStyles[item.tone]}`}>
+              <Icon className="pointer-events-none absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 text-[#8faa22]/10 dark:text-[#c8f24a]/12" />
+              <div className="relative flex items-center justify-center">
+                <span className={`rounded-md px-3 py-1.5 text-xs font-black text-black shadow-[0_0_18px_rgba(200,242,74,0.2)] ${statusBadgeStyles[item.tone]}`}>
+                  {item.status}
+                </span>
               </div>
-              <p className={`mt-3 text-sm leading-6 ${theme.muted}`}>{item.description}</p>
+              <p className={`relative mt-3 text-sm leading-6 ${theme.muted}`}>{item.description}</p>
             </div>
           )
         })}
       </div>
-      <div className="grid gap-2 sm:grid-cols-2">
-        {dataFlowSteps.map((step, index) => (
-          <div key={step.title} className={`rounded-lg border p-3 ${theme.panel}`}>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8faa22] dark:text-[#c8f24a]">
-              0{index + 1}
-            </p>
-            <h3 className="mt-1 font-bold">{step.title}</h3>
-            <p className={`mt-1 text-sm leading-5 ${theme.muted}`}>{step.description}</p>
+      <div className="grid gap-2">
+        {lifecycleSteps.map((step, index) => (
+          <div key={step.title}>
+            <div className={`rounded-lg border p-3 ${theme.panel}`}>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8faa22] dark:text-[#c8f24a]">
+                0{index + 1}
+              </p>
+              <h3 className="mt-1 font-bold">{step.title}</h3>
+              <p className={`mt-1 text-sm leading-5 ${theme.muted}`}>{step.description}</p>
+            </div>
+            {index < lifecycleSteps.length - 1 ? (
+              <ArrowRight className="mx-auto my-1 h-4 w-4 rotate-90 text-[#8faa22] dark:text-[#c8f24a]" />
+            ) : null}
           </div>
         ))}
       </div>
