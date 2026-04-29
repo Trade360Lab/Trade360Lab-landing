@@ -234,7 +234,7 @@ export function DocsPage({ isLightTheme }: DocsPageProps) {
           <div
             className={`min-h-0 overflow-hidden rounded-lg border p-4 ${
               activeSection === 'overview'
-                ? 'border-current/10 bg-transparent shadow-none'
+                ? 'border-current/10 bg-white/75 dark:bg-black/75 shadow-none'
                 : `backdrop-blur-xl ${theme.panelStrong}`
             }`}
           >
@@ -343,20 +343,34 @@ function OverviewMermaidDiagram({
           </a>
         </div>
       </div>
-      <div className="grid items-start gap-3 xl:grid-cols-[1fr_34px_1fr]">
-        <div className="hidden xl:block" />
-        <div className="hidden xl:block" />
-        <div className="grid gap-3">
-          <a
-            href="https://github.com/Trade360Lab/Trade360Lab-Analyzer-BTC.git"
-            target="_blank"
-            rel="noreferrer"
-            className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_28px_rgba(255,255,0,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(255,255,0,0.34)]`}
-          >
-            <p className="font-bold">BTC Analyzer Bot</p>
-            <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">GitHub repository</p>
-          </a>
-        </div>
+      <div className="grid items-start gap-3 xl:grid-cols-3">
+        <a
+          href="https://github.com/Trade360Lab/Trade360Lab-Analyzer-BTC.git"
+          target="_blank"
+          rel="noreferrer"
+          className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_28px_rgba(255,255,0,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(255,255,0,0.34)]`}
+        >
+          <p className="font-bold">BTC Analyzer Bot</p>
+          <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">GitHub repository</p>
+        </a>
+        <a
+          href="https://github.com/Trade360Lab/Trade360Lab-SpreadBot.git"
+          target="_blank"
+          rel="noreferrer"
+          className={`${accentBaseClass} min-h-20 border-[#FFFF00] text-[#182016] hover:shadow-[0_0_28px_rgba(255,255,0,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(255,255,0,0.34)]`}
+        >
+          <p className="font-bold">Spread Bot</p>
+          <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">Trade360Lab-SpreadBot</p>
+        </a>
+        <a
+          href="https://github.com/Trade360Lab/Trade360Lab-PullbackTrader.git"
+          target="_blank"
+          rel="noreferrer"
+          className={`${accentBaseClass} min-h-20 border-[#00C2FF] text-[#182016] hover:shadow-[0_0_28px_rgba(0,194,255,0.38)] dark:text-[#c8f24a] dark:hover:shadow-[0_0_28px_rgba(0,194,255,0.34)]`}
+        >
+          <p className="font-bold">Pullback Trader</p>
+          <p className="mt-1 text-xs leading-5 text-[#182016]/70 dark:text-[#c8f24a]/70">Trade360Lab-PullbackTrader</p>
+        </a>
       </div>
       <pre className="sr-only">{`flowchart LR
     A["Trade360Lab<br/>Quantitative Trading Lab"]
@@ -364,7 +378,9 @@ function OverviewMermaidDiagram({
     A --> C["GitHub<br/>Organization"]
     C --> D["Main Repo<br/>Trade360Lab"]
     C --> E["Strategies Repo<br/>Trade360Lab-Strategies"]
-    C --> G["BTC Analyzer Bot"]`}</pre>
+    C --> G["BTC Analyzer Bot"]
+    C --> H["Spread Bot"]
+    C --> I["Pullback Trader"]`}</pre>
     </div>
   )
 }
